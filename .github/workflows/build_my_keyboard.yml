@@ -4,21 +4,15 @@ on:
 
 jobs:
   luciferous_helix:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    container:
+      image: qmkfm/qmk_cli
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          git submodule init
-          git submodule update
-      - run: |
-          docker image build -t $CONTAINER_NAME .
-          docker container run --name $CONTAINER_NAME $CONTAINER_NAME make $BUILD_TARGET
-          docker container cp $CONTAINER_NAME:/qmk_firmware/.build .
-          cd .build
-          ls -F | grep -F "/" | xargs rm -rf
-        env:
-          CONTAINER_NAME: qmk_firmware
-          BUILD_TARGET: helix/rev3:luciferous_helix
+        with:
+          submodules: recursive
+      - run: qmk setup -yes
+      - run: qmk compile -kb helix/rev3 -km luciferous_helix
       - uses: actions/upload-artifact@v5
         with:
           path: .build/
