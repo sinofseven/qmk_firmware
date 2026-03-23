@@ -18,7 +18,7 @@ jobs:
           ls -F | grep -F "/" | xargs rm -rf
         env:
           CONTAINER_NAME: qmk_firmware
-          BUILD_TARGET: helix:keymap_folder:luciferous_helix
+          BUILD_TARGET: helix/rev3:luciferous_helix
       - uses: actions/upload-artifact@v5
         with:
           path: .build/
