@@ -12,7 +12,7 @@ jobs:
         with:
           submodules: recursive
       - run: qmk setup --yes
-      - run: qmk compile -kb helix/rev3 -km luciferous_helix
+      - run: qmk compile -kb helix/rev3 -km default
       - uses: actions/upload-artifact@v5
         with:
           path: .build/
