@@ -12,8 +12,10 @@ jobs:
         with:
           submodules: recursive
       - run: qmk setup --yes
+      - run: ll -lF
       - run: qmk compile -kb helix/rev3 -km default
-      - uses: actions/upload-artifact@v5
-        with:
-          path: .build/
+      - run: ll -lF
+      # - uses: actions/upload-artifact@v5
+      #   with:
+      #     path: .build/
 
