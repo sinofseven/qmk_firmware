@@ -15,7 +15,8 @@ jobs:
       - run: ls -lF
       - run: qmk compile -kb helix/rev3 -km default
       - run: ls -lF
-      # - uses: actions/upload-artifact@v5
-      #   with:
-      #     path: .build/
+      - uses: actions/upload-artifact@v5
+        with:
+          name: helix_rev3_default.hex
+          path: helix_rev3_default.hex
 
